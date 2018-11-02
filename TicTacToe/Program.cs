@@ -10,8 +10,8 @@ namespace TicTacToe
         static void Main(string[] args)
         {
             Board Board = new Board();
-            Player Player1 = new Player("George", TileChoices.x);
-            Player Player2 = new Player("Nick", TileChoices.o);
+            Player Player1 = new Player("George", PlayerLetter.x);
+            Player Player2 = new Player("Nick", PlayerLetter.o);
             Player CurrentPlayer = Player1;
 
             Board.DisplayTiles();

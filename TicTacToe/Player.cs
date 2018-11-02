@@ -8,29 +8,28 @@ namespace TicTacToe
     class Player
     {
         internal String Name { get; private set; }
-        internal TileChoices TileChoice { get; private set; }
-        internal byte Tile { get; private set; }
+        internal PlayerLetter PlayerLetter { get; private set; }
+        private byte _Tile;
+        internal byte Tile { get { return _Tile; } }
 
-        public Player(String Name, TileChoices TileChoice)
+        public Player(String Name, PlayerLetter PlayerLetter)
         {
             this.Name = Name;
-            this.TileChoice = TileChoice;
+            this.PlayerLetter = PlayerLetter;
         }
 
         public void ChooseATile(Board Board)
         {
             Console.WriteLine("Select a tile number: ");
             String Input = Console.ReadLine();
-            byte Tile = 0;
 
-            while ((!byte.TryParse(Input, out Tile)) || (!Board.IsTileEmpty(Tile)))
+            while ((!byte.TryParse(Input, out _Tile)) || (!Board.IsTileEmpty(_Tile)))
             {
-                Board.DisplayAvailableChoices();
+                Board.DisplayAvailableTiles();
                 Console.WriteLine("Select an available tile number: ");
                 Input = Console.ReadLine();
             }
 
-            this.Tile = Tile;
         }
     }
 }

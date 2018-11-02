@@ -5,12 +5,12 @@ using System.Text;
 
 namespace TicTacToe
 {
-    enum TileChoices { x = 'x', o = 'o' };
+    enum PlayerLetter { x = 'x', o = 'o' };
 
     class Board
     {
         private Char[] Tiles = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-        private List<Char> TilesToChoose = new List<Char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+        private List<Char> AvailableTiles = new List<Char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
         public bool IsTileEmpty(byte Tile)
         {
@@ -19,24 +19,24 @@ namespace TicTacToe
 
         public void SetPlayersChoice(Player Player)
         {
-            Tiles[Player.Tile - 1] = (char)Player.TileChoice;
+            Tiles[Player.Tile - 1] = (char)Player.PlayerLetter;
             MakeTileUnavailable(Player);
         }
 
         private void MakeTileUnavailable(Player Player)
         {
             Char CharToFind = Player.Tile.ToString().ToCharArray()[0];
-            TilesToChoose.Remove(CharToFind);
+            AvailableTiles.Remove(CharToFind);
         }
 
-        public void DisplayAvailableChoices()
+        public void DisplayAvailableTiles()
         {
-            Console.WriteLine("Available Choices: " + String.Join(", ", TilesToChoose));
+            Console.WriteLine("Available Choices: " + String.Join(", ", AvailableTiles));
         }
 
         public bool HasAvailableChoices()
         {
-            return TilesToChoose.Count > 0;
+            return AvailableTiles.Count > 0;
         }
 
         public void DisplayTiles()

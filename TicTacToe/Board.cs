@@ -38,7 +38,10 @@ namespace TicTacToe
         {
             return AvailableTiles.Count > 0;
         }
-
+        public Char GetTileValue(byte Tile)
+        {
+            return Tiles[Tile];
+        }
         public void DisplayTiles()
         {
             byte i = 0;

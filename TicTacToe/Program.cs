@@ -24,21 +24,26 @@ namespace TicTacToe
             Player Player1 = new Player("George", PlayerLetter.x);
             Player Player2 = new Player("Nick", PlayerLetter.o);
             Player CurrentPlayer = Player1;
+            Player Winner = null;
 
             Board.DisplayTiles();
 
-            while (Board.HasAvailableChoices())
+            do
             {
                 CurrentPlayer.ChooseATile(Board);
                 Board.SetPlayersChoice(CurrentPlayer);
                 Board.DisplayTiles();
                 if (DoesPlayerWins(Board, CurrentPlayer))
-                {
-                    Console.WriteLine("Player {0} Wins!!!", CurrentPlayer.Name);
-                    break;
-                }
+                    Winner = CurrentPlayer;
+
                 CurrentPlayer = (CurrentPlayer == Player1) ? Player2 : Player1;
-            }
+
+            } while ((Board.HasAvailableChoices()) && (Winner == null));
+
+            if (Winner == null)
+                Console.WriteLine("It is a tie !!!");
+            else
+                Console.WriteLine("Player {0} Wins!!!", Winner.Name);
 
             Console.ReadKey();
         }

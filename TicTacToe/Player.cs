@@ -7,10 +7,10 @@ namespace TicTacToe
 {
   abstract class Player
   {
-    internal String Name { get; private set; }
-    internal Char PlayerLetter { get; private set; }
+    public String Name { get; private set; }
+    public Char PlayerLetter { get; private set; }
     protected byte _Tile;
-    internal byte Tile { get { return _Tile; } }
+    public byte Tile { get { return _Tile; } }
 
     public Player(String Name, PlayerLetter PlayerLetter)
     {

@@ -13,15 +13,25 @@ namespace TicTacToe
 
     public override void ChooseATile(Board Board)
     {
-      Console.WriteLine("Select a tile number: ");
-      String Input = Console.ReadLine();
-
-      while ((!byte.TryParse(Input, out _Tile)) || (!Board.IsTileEmpty(_Tile)))
+      _Tile = GetATileFromZeroToNine();
+      while (!Board.IsTileEmpty(_Tile))
       {
         Board.DisplayAvailableTiles();
-        Console.WriteLine("Select an available tile number: ");
-        Input = Console.ReadLine();
+        _Tile = GetATileFromZeroToNine();
       }
+    }
+    private byte GetATileFromZeroToNine()
+    {
+      byte InputByte;
+      string Input;
+      do
+      {
+        Console.Write($"{Name} select a tile number: ");
+        Input = Console.ReadLine();
+      } while (!(byte.TryParse(Input, out InputByte)) ||
+               !(InputByte>=1 && InputByte<=9));
+
+      return InputByte;
     }
   }
 }

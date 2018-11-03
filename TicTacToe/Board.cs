@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,33 +14,24 @@ namespace TicTacToe
 
         public bool IsTileEmpty(byte Tile)
         {
-            return ((Tile >= 1 && Tile <= 9) && (Tiles[Tile - 1] == ' '));
+            return ((Tile >= 1 && Tile <= 9) && (Tiles[--Tile] == ' '));
         }
-
-        public void SetPlayersChoice(Player Player)
+        public void SetTileValue(byte Tile, Char TileValue)
         {
-            Tiles[Player.Tile - 1] = (char)Player.PlayerLetter;
-            MakeTileUnavailable(Player);
+            Tiles[--Tile] = TileValue;
+            AvailableTiles.Remove(TileValue);
         }
-
-        private void MakeTileUnavailable(Player Player)
-        {
-            Char CharToFind = Player.Tile.ToString().ToCharArray()[0];
-            AvailableTiles.Remove(CharToFind);
-        }
-
         public void DisplayAvailableTiles()
         {
             Console.WriteLine("Available Choices: " + String.Join(", ", AvailableTiles));
         }
-
         public bool HasAvailableChoices()
         {
             return AvailableTiles.Count > 0;
         }
         public Char GetTileValue(byte Tile)
         {
-            return Tiles[Tile];
+            return Tiles[--Tile];
         }
         public void DisplayTiles()
         {

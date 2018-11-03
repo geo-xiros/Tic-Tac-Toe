@@ -28,10 +28,14 @@ namespace TicTacToe
       {
         Console.Write($"{Name} select a tile number: ");
         Input = Console.ReadLine();
-      } while (!(byte.TryParse(Input, out InputByte)) ||
-               !(InputByte>=1 && InputByte<=9));
+      } while (!byte.TryParse(Input, out InputByte) ||
+               !IsValueBetweenOneAndNine(InputByte));
 
       return InputByte;
+    }
+    private bool IsValueBetweenOneAndNine(byte value)
+    {
+      return (value >= 1 && value <= 9);
     }
   }
 }

@@ -10,38 +10,36 @@ namespace TicTacToe
   class Board
   {
     readonly List<List<byte>>[] WinCombinations = {
-            new List<List<byte>> { new List<byte> { 2, 3 }, new List<byte> { 4, 7 }, new List<byte> { 5, 9 } },
-            new List<List<byte>> { new List<byte> { 1, 3 }, new List<byte> { 5, 8 } },
-            new List<List<byte>> { new List<byte> { 1, 2 }, new List<byte> { 5, 7 }, new List<byte> { 6, 9 } },
-            new List<List<byte>> { new List<byte> { 1, 7 }, new List<byte> { 5, 6 }, },
-            new List<List<byte>> { new List<byte> { 1, 9 }, new List<byte> { 2, 8 }, new List<byte> { 3, 7 }, new List<byte> { 4, 6 } },
-            new List<List<byte>> { new List<byte> { 3, 9 }, new List<byte> { 4, 5 }, },
-            new List<List<byte>> { new List<byte> { 1, 4 }, new List<byte> { 8, 9 }, new List<byte> { 5, 3 } },
-            new List<List<byte>> { new List<byte> { 7, 9 }, new List<byte> { 2, 5 } },
-            new List<List<byte>> { new List<byte> { 7, 8 }, new List<byte> { 3, 6 }, new List<byte> { 1,5 } }};
-    private readonly Char[] Tiles = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
-    private List<Char> AvailableTiles = new List<Char> { '1', '2', '3', '4', '5', '6', '7', '8', '9' };
+            new List<List<byte>> { new List<byte> { 1, 2 }, new List<byte> { 3, 6 }, new List<byte> { 4, 8 } },
+            new List<List<byte>> { new List<byte> { 0, 2 }, new List<byte> { 4, 7 } },
+            new List<List<byte>> { new List<byte> { 0, 1 }, new List<byte> { 4, 6 }, new List<byte> { 5, 8 } },
+            new List<List<byte>> { new List<byte> { 0, 6 }, new List<byte> { 4, 5 }, },
+            new List<List<byte>> { new List<byte> { 0, 8 }, new List<byte> { 1, 7 }, new List<byte> { 2, 6 }, new List<byte> { 3, 5 } },
+            new List<List<byte>> { new List<byte> { 2, 8 }, new List<byte> { 3, 4 }, },
+            new List<List<byte>> { new List<byte> { 0, 3 }, new List<byte> { 7, 8 }, new List<byte> { 4, 2 } },
+            new List<List<byte>> { new List<byte> { 6, 8 }, new List<byte> { 1, 4 } },
+            new List<List<byte>> { new List<byte> { 6, 7 }, new List<byte> { 2, 5 }, new List<byte> { 0, 4 } }};
+    private readonly char[] Tiles = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 
-    public bool IsTileEmpty(byte Tile)
+    public bool IsTileEmpty(byte tile)
     {
-      return ((Tile >= 1 && Tile <= 9) && (Tiles[--Tile] == ' '));
+      return ((tile >= 0 && tile < 9) && (Tiles[tile] == ' '));
     }
-    public void SetTileValue(byte Tile, Char TileValue)
+    public void SetTileValue(byte tile, char tileValue)
     {
-      AvailableTiles.Remove(Tile.ToString().ToCharArray()[0]);
-      Tiles[--Tile] = TileValue;
+      Tiles[tile] = tileValue;
     }
     public void DisplayAvailableTiles()
     {
-      Console.WriteLine("Available Choices: " + String.Join(", ", AvailableTiles));
+      Console.WriteLine("Available Choices: " + string.Join(", ", Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => item.index)));
     }
     public bool HasAvailableChoices()
     {
-      return AvailableTiles.Count > 0;
+      return Tiles.Count((tile) => tile == ' ') > 0;
     }
-    public Char GetTileValue(byte Tile)
+    public char GetTileValue(byte tile)
     {
-      return Tiles[--Tile];
+      return Tiles[tile];
     }
     public void DisplayTiles()
     {
@@ -53,14 +51,14 @@ namespace TicTacToe
       Console.WriteLine(" {0} | {1} | {2} ", Tiles[i++], Tiles[i++], Tiles[i++]);
       Console.WriteLine("");
     }
-    public bool DoesPlayerWins(Player Player)
+    public bool DoesPlayerWins(Player player)
     {
       // check all cobinations for winning
-      foreach (List<byte> Combination in WinCombinations[Player.Tile - 1])
+      foreach (List<byte> Combination in WinCombinations[player.Tile])
       {
         // If Has player letter in both win combinations positions then player wins
-        if ((GetTileValue(Combination[0]) == Player.PlayerLetter) &&
-            (GetTileValue(Combination[1]) == Player.PlayerLetter))
+        if ((GetTileValue(Combination[0]) == player.PlayerLetter) &&
+            (GetTileValue(Combination[1]) == player.PlayerLetter))
           return true;
       }
 

@@ -7,17 +7,17 @@ namespace TicTacToe
 {
   internal class HumanPlayer : Player
   {
-    public HumanPlayer(string Name, PlayerLetter PlayerLetter) : base(Name, PlayerLetter)
+    public HumanPlayer(string name, PlayerLetter playerLetter) : base(name, playerLetter)
     {
     }
 
-    public override void ChooseATile(Board Board)
+    public override void ChooseATile(Board board)
     {
-      _Tile = GetATileFromZeroToNine();
-      while (!Board.IsTileEmpty(_Tile))
+      Tile = GetATileFromZeroToNine();
+      while (!board.IsTileEmpty(Tile))
       {
-        Board.DisplayAvailableTiles();
-        _Tile = GetATileFromZeroToNine();
+        board.DisplayAvailableTiles();
+        Tile = GetATileFromZeroToNine();
       }
     }
     private byte GetATileFromZeroToNine()

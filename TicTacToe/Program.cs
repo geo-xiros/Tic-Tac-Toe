@@ -13,8 +13,9 @@ namespace TicTacToe
       Game Game = new Game(new HumanPlayer("George", PlayerLetter.x),
                            new HumanPlayer("Nick", PlayerLetter.o));
       Game.Play();
-      
+
       Console.ReadKey();
+
     }
 
   }

@@ -8,17 +8,17 @@ namespace TicTacToe
   abstract class Player
   {
     public String Name { get; private set; }
-    public Char PlayerLetter { get; private set; }
-    protected byte _Tile;
-    public byte Tile { get { return _Tile; } }
+    public char PlayerLetter { get; private set; }
+    private byte _Tile;
+    public byte Tile { get { return (byte)(_Tile - 1); } protected set { _Tile = value; } }
 
-    public Player(String Name, PlayerLetter PlayerLetter)
+    public Player(String name, PlayerLetter playerLetter)
     {
-      this.Name = Name;
-      this.PlayerLetter = (Char) PlayerLetter;
+      this.Name = name;
+      this.PlayerLetter = (char)playerLetter;
     }
 
-    public abstract void ChooseATile(Board Board);
+    public abstract void ChooseATile(Board board);
   }
 
 

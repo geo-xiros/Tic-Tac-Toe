@@ -12,12 +12,12 @@ namespace TicTacToe
     private Player CurrentPlayer;
     private Player Winner;
     Board Board;
-    public Game(Player Player1, Player Player2)
+    public Game(Player player1, Player player2)
     {
-      this.Board = new Board();
-      this.Player1 = Player1;
-      this.Player2 = Player2;
-      this.CurrentPlayer = Player2;
+      Board = new Board();
+      Player1 = player1;
+      Player2 = player2;
+      CurrentPlayer = player2;
       Winner = null;
     }
     public void Play()
@@ -38,10 +38,10 @@ namespace TicTacToe
 
       } while ((Board.HasAvailableChoices()) && (Winner == null));
 
-      Console.WriteLine(GetWinnerString());
+      Console.WriteLine(GetWinnerMessage());
     }
 
-    public String GetWinnerString()
+    public String GetWinnerMessage()
     {
       return (Winner == null) ? "It is a tie !!!" : $"Player {Winner.Name} Wins!!!";
     }

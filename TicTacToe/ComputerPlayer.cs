@@ -17,10 +17,11 @@ namespace TicTacToe
 
       // TODO:
       // CHECK IF THE OTHER USER IS READY TO WIN AND BLOCK HIM
-      // CHECK IF AI IS READY TO WIN AND SELECT WINNING TILE
-
-      // RANDOM SELECT TILE
-      Tile = ChooseRandomTile(AvalableTiles);
+      if (!FindWinningTile(board, AvalableTiles, PlayerLetter == 'x' ? 'o' : 'x'))
+        // CHECK IF AI IS READY TO WIN AND SELECT WINNING TILE
+        if (!FindWinningTile(board, AvalableTiles, PlayerLetter))
+          // RANDOM SELECT TILE
+          Tile = ChooseRandomTile(AvalableTiles);
 
       // set Tile Value
       board.SetTileValue(Tile, PlayerLetter);
@@ -31,6 +32,20 @@ namespace TicTacToe
     {
       int RandomTile = Random.Next(AvalableTiles.Count);
       return AvalableTiles.ElementAt(RandomTile);
+    }
+
+    private bool FindWinningTile(Board board, IList<byte> avalableTiles, char playerLetter)
+    {
+      foreach (byte TileToCheck in avalableTiles)
+      {
+        if (base.DoesPlayerWins(board, (byte)(TileToCheck-1), playerLetter))
+        {
+          Tile = TileToCheck;
+          return true;
+        }
+
+      }
+      return false;
     }
   }
 }

@@ -20,13 +20,13 @@ namespace TicTacToe
 
       Tile = _Tile;
     }
-    private byte ConsoleInputTileNumber(string AvailableTilesString)
+    private byte ConsoleInputTileNumber(string availableTilesString)
     {
       byte InputByte; string Input;
 
       do
       {
-        Console.Write($"{Name} select a tile number {AvailableTilesString}: ");
+        Console.Write($"{Name} select a tile number {availableTilesString}: ");
         Input = Console.ReadLine();
       } while (!byte.TryParse(Input, out InputByte));
 

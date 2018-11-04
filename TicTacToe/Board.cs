@@ -29,11 +29,11 @@ namespace TicTacToe
     {
       Tiles[tile] = tileValue;
     }
-    public void DisplayAvailableTiles()
+    public string AvailableTilesString()
     {
-      Console.WriteLine("Available Choices: " + string.Join(", ", AvalableTiles()));// Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => item.index+1)));
+      return string.Join(", ", AvailableTiles()); 
     }
-    public IList<byte> AvalableTiles()
+    public IList<byte> AvailableTiles()
     {
       return Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => (byte) (item.index + 1)).ToList();
     }

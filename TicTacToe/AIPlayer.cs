@@ -9,13 +9,11 @@ namespace TicTacToe
   {
     Random Random = new Random();
 
-    public AIPlayer(string name, PlayerLetter playerLetter) : base(name, playerLetter)
-    {
-    }
+    public AIPlayer(string name, PlayerLetter playerLetter) : base(name, playerLetter) { }
 
     public override void ChooseATile(Board board)
     {
-      IList<byte> AvalableTiles = board.AvalableTiles();
+      IList<byte> AvalableTiles = board.AvailableTiles();
 
       // TODO:
       // CHECK IF THE OTHER USER IS READY TO WIN AND BLOCK HIM
@@ -31,8 +29,8 @@ namespace TicTacToe
     }
     private byte ChooseRandomTile(IList<byte> AvalableTiles)
     {
-      int random = Random.Next(AvalableTiles.Count);
-      return (byte)AvalableTiles.ElementAt(random);
+      int RandomTile = Random.Next(AvalableTiles.Count);
+      return (byte)AvalableTiles.ElementAt(RandomTile);
     }
   }
 }

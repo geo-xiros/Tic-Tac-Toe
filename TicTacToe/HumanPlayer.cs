@@ -13,20 +13,20 @@ namespace TicTacToe
 
     public override void ChooseATile(Board board)
     {
-      Tile = GetATileFromZeroToNine();
-      while (!board.IsTileEmpty(Tile))
+      string AvailableTilesString = board.AvailableTilesString();
+      do
       {
-        board.DisplayAvailableTiles();
-        Tile = GetATileFromZeroToNine();
-      }
+        Tile = GetATileFromZeroToNine(AvailableTilesString);
+      } while (!board.IsTileEmpty(Tile));
+      
     }
-    private byte GetATileFromZeroToNine()
+    private byte GetATileFromZeroToNine(string AvailableTilesString)
     {
       byte InputByte;
       string Input;
       do
       {
-        Console.Write($"{Name} select a tile number: ");
+        Console.Write($"{Name} select a tile number ({AvailableTilesString}): ");
         Input = Console.ReadLine();
       } while (!byte.TryParse(Input, out InputByte) ||
                !IsValueBetweenOneAndNine(InputByte));

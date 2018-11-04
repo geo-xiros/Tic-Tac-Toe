@@ -30,6 +30,11 @@ namespace TicTacToe
     public bool DoesPlayerWins(Board board)
     {
       // check all cobinations for winning
+      return DoesPlayerWins(board, Tile, PlayerLetter);
+    }
+    public bool DoesPlayerWins(Board board, byte Tile, char PlayerLetter)
+    {
+      // check all cobinations for winning
       foreach (List<byte> Combination in WinCombinations[Tile])
       {
         // If Has player letter in both win combinations positions then player wins

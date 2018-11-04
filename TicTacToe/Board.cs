@@ -22,7 +22,7 @@ namespace TicTacToe
     }
     public string AvailableTilesString()
     {
-      return string.Join(", ", AvailableTiles()); 
+      return "(Available Tiles : " + string.Join(", ", AvailableTiles()) + ") "; 
     }
     public IList<byte> AvailableTiles()
     {

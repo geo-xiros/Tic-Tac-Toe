@@ -12,7 +12,7 @@ namespace TicTacToe
 
     private readonly char[] Tiles = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 
-    public bool IsTileAvailable(byte tile)
+    public bool IsTileSelectionValid(byte tile)
     {
       return AvailableTiles().Contains(tile);
     }

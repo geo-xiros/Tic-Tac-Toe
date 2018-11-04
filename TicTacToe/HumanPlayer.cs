@@ -15,7 +15,7 @@ namespace TicTacToe
 
       byte _Tile = ConsoleInputTileNumber("");
 
-      while (!board.IsTileAvailable(_Tile))
+      while (!board.IsTileSelectionValid(_Tile))
         _Tile = ConsoleInputTileNumber(AvailableTilesString);
 
       Tile = _Tile;

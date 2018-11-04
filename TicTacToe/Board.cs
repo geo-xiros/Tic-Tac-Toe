@@ -14,7 +14,7 @@ namespace TicTacToe
 
     public bool IsTileAvailable(byte tile)
     {
-      return (Tiles[tile] == ' ');
+      return AvailableTiles().Contains(tile);
     }
     public void SetTileValue(Player player)
     {
@@ -26,11 +26,11 @@ namespace TicTacToe
     }
     public string AvailableTilesString()
     {
-      return "(Available Tiles : " + string.Join(", ", AvailableTiles()) + ") "; 
+      return "(Available Tiles : " + string.Join(", ", AvailableTiles()) + ") ";
     }
     public IList<byte> AvailableTiles()
     {
-      return Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => (byte) (item.index + 1)).ToList();
+      return Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => (byte)(item.index + 1)).ToList();
     }
     public bool HasAvailableTiles()
     {
@@ -40,7 +40,7 @@ namespace TicTacToe
     public void DisplayTiles()
     {
       byte i = 0;
-      
+
       Console.WriteLine(" {0} | {1} | {2} ", Tiles[i++], Tiles[i++], Tiles[i++]);
       Console.WriteLine("-----------");
       Console.WriteLine(" {0} | {1} | {2} ", Tiles[i++], Tiles[i++], Tiles[i++]);

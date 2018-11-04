@@ -7,36 +7,30 @@ namespace TicTacToe
 {
   internal class HumanPlayer : Player
   {
-    public HumanPlayer(string name, PlayerLetter playerLetter) : base(name, playerLetter)
-    {
-    }
+    public HumanPlayer(string name, PlayerLetter playerLetter) : base(name, playerLetter) { }
 
     public override void ChooseATile(Board board)
     {
       string AvailableTilesString = board.AvailableTilesString();
-      Tile = GetATileFromZeroToNine("");
-      while (!board.IsTileAvailable(Tile))
-      {
-        Tile = GetATileFromZeroToNine(AvailableTilesString);
-      } 
-      
+
+      byte _Tile = ConsoleInputTileNumber("");
+
+      while (!board.IsTileAvailable(_Tile))
+        _Tile = ConsoleInputTileNumber(AvailableTilesString);
+
+      Tile = _Tile;
     }
-    private byte GetATileFromZeroToNine(string AvailableTilesString)
+    private byte ConsoleInputTileNumber(string AvailableTilesString)
     {
-      byte InputByte;
-      string Input;
+      byte InputByte; string Input;
+
       do
       {
         Console.Write($"{Name} select a tile number {AvailableTilesString}: ");
         Input = Console.ReadLine();
-      } while (!byte.TryParse(Input, out InputByte) ||
-               !IsValueBetweenOneAndNine(InputByte));
+      } while (!byte.TryParse(Input, out InputByte));
 
       return InputByte;
-    }
-    private bool IsValueBetweenOneAndNine(byte value)
-    {
-      return (value >= 1 && value <= 9);
     }
   }
 }

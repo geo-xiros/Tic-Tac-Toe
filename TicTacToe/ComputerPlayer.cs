@@ -24,7 +24,7 @@ namespace TicTacToe
           ChooseRandomTile(AvalableTiles);
 
       // set Tile Value
-      board.SetTileValue(Tile, PlayerLetter);
+      //board.SetTileValue(this);// Tile, PlayerLetter);
 
       //Console.WriteLine($"{Name} selected tile number: {Tile + 1}");
     }

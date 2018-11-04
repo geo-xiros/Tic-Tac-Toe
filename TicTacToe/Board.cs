@@ -16,9 +16,9 @@ namespace TicTacToe
     {
       return ((tile >= 0 && tile < 9) && (Tiles[tile] == ' '));
     }
-    public void SetTileValue(byte tile, char tileValue)
+    public void SetTileValue(Player player)
     {
-      Tiles[tile] = tileValue;
+      Tiles[player.Tile] = player.PlayerLetter;
     }
     public string AvailableTilesString()
     {

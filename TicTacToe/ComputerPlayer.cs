@@ -22,10 +22,10 @@ namespace TicTacToe
           // RANDOM SELECT TILE
           ChooseRandomTile(AvalableTiles);
     }
-    private void ChooseRandomTile(IList<byte> AvalableTiles)
+    private void ChooseRandomTile(IList<byte> avalableTiles)
     {
-      int RandomTile = Random.Next(AvalableTiles.Count);
-      Tile = AvalableTiles.ElementAt(RandomTile);
+      int RandomTile = Random.Next(avalableTiles.Count);
+      Tile = avalableTiles.ElementAt(RandomTile);
     }
 
     private bool FindWinningTile(Board board, IList<byte> avalableTiles, char playerLetter)

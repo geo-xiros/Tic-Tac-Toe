@@ -32,14 +32,14 @@ namespace TicTacToe
       // check all cobinations for winning
       return DoesPlayerWins(board, Tile, PlayerLetter);
     }
-    public bool DoesPlayerWins(Board board, byte Tile, char PlayerLetter)
+    public bool DoesPlayerWins(Board board, byte tile, char playerLetter)
     {
       // check all cobinations for winning
-      foreach (byte[] Combination in WinCombinations[Tile])
+      foreach (byte[] Combination in WinCombinations[tile])
       {
         // If Has player letter in both win combinations positions then player wins
-        if ((board.GetTileValue(Combination[0]) == PlayerLetter) &&
-            (board.GetTileValue(Combination[1]) == PlayerLetter))
+        if ((board.GetTileValue(Combination[0]) == playerLetter) &&
+            (board.GetTileValue(Combination[1]) == playerLetter))
           return true;
       }
 

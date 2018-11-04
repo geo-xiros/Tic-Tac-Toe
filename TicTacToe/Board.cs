@@ -14,11 +14,15 @@ namespace TicTacToe
 
     public bool IsTileAvailable(byte tile)
     {
-      return ((tile >= 0 && tile < 9) && (Tiles[tile] == ' '));
+      return (Tiles[tile] == ' ');
     }
     public void SetTileValue(Player player)
     {
       Tiles[player.Tile] = player.PlayerLetter;
+    }
+    public char GetTileValue(byte tile)
+    {
+      return Tiles[tile];
     }
     public string AvailableTilesString()
     {
@@ -32,10 +36,7 @@ namespace TicTacToe
     {
       return Tiles.Count((tile) => tile == ' ') > 0;
     }
-    public char GetTileValue(byte tile)
-    {
-      return Tiles[tile];
-    }
+
     public void DisplayTiles()
     {
       byte i = 0;

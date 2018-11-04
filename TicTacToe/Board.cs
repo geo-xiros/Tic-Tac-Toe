@@ -39,6 +39,7 @@ namespace TicTacToe
     public void DisplayTiles()
     {
       byte i = 0;
+      
       Console.WriteLine(" {0} | {1} | {2} ", Tiles[i++], Tiles[i++], Tiles[i++]);
       Console.WriteLine("-----------");
       Console.WriteLine(" {0} | {1} | {2} ", Tiles[i++], Tiles[i++], Tiles[i++]);

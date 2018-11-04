@@ -21,24 +21,24 @@ namespace TicTacToe
         // CHECK IF AI IS READY TO WIN AND SELECT WINNING TILE
         if (!FindWinningTile(board, AvalableTiles, PlayerLetter))
           // RANDOM SELECT TILE
-          Tile = ChooseRandomTile(AvalableTiles);
+          ChooseRandomTile(AvalableTiles);
 
       // set Tile Value
       board.SetTileValue(Tile, PlayerLetter);
 
-      Console.WriteLine($"{Name} selected tile number: {Tile + 1}");
+      //Console.WriteLine($"{Name} selected tile number: {Tile + 1}");
     }
-    private byte ChooseRandomTile(IList<byte> AvalableTiles)
+    private void ChooseRandomTile(IList<byte> AvalableTiles)
     {
       int RandomTile = Random.Next(AvalableTiles.Count);
-      return AvalableTiles.ElementAt(RandomTile);
+      Tile = AvalableTiles.ElementAt(RandomTile);
     }
 
     private bool FindWinningTile(Board board, IList<byte> avalableTiles, char playerLetter)
     {
       foreach (byte TileToCheck in avalableTiles)
       {
-        if (base.DoesPlayerWins(board, (byte)(TileToCheck-1), playerLetter))
+        if (DoesPlayerWins(board, (byte)(TileToCheck-1), playerLetter))
         {
           Tile = TileToCheck;
           return true;

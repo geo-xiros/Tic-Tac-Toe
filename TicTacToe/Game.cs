@@ -30,6 +30,9 @@ namespace TicTacToe
         CurrentPlayer = (CurrentPlayer == Player1) ? Player2 : Player1;
         CurrentPlayer.ChooseATile(Board);
 
+        Console.Clear();
+        Console.WriteLine($"{CurrentPlayer.Name} selected tile number: {CurrentPlayer.Tile + 1}");
+
         Board.SetTileValue(CurrentPlayer.Tile, CurrentPlayer.PlayerLetter);
         Board.DisplayTiles();
 

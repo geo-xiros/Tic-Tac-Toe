@@ -5,11 +5,11 @@ using System.Text;
 
 namespace TicTacToe
 {
-  class AIPlayer : Player
+  class ComputerPlayer : Player
   {
     Random Random = new Random();
 
-    public AIPlayer(string name, PlayerLetter playerLetter) : base(name, playerLetter) { }
+    public ComputerPlayer(string name, PlayerLetter playerLetter) : base(name, playerLetter) { }
 
     public override void ChooseATile(Board board)
     {
@@ -30,7 +30,7 @@ namespace TicTacToe
     private byte ChooseRandomTile(IList<byte> AvalableTiles)
     {
       int RandomTile = Random.Next(AvalableTiles.Count);
-      return (byte)AvalableTiles.ElementAt(RandomTile);
+      return AvalableTiles.ElementAt(RandomTile);
     }
   }
 }

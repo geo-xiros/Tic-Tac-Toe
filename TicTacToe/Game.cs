@@ -33,7 +33,7 @@ namespace TicTacToe
         Board.SetTileValue(CurrentPlayer.Tile, CurrentPlayer.PlayerLetter);
         Board.DisplayTiles();
 
-        if (Board.DoesPlayerWins(CurrentPlayer))
+        if (CurrentPlayer.DoesPlayerWins(Board))
           Winner = CurrentPlayer;
 
       } while ((Board.HasAvailableChoices()) && (Winner == null));

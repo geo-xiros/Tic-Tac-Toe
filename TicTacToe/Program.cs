@@ -12,7 +12,7 @@ namespace TicTacToe
     static void Main(string[] args)
     {
       Game Game = new Game(new HumanPlayer("George", PlayerLetter.x),
-                           new AIPlayer("Computer", PlayerLetter.o));
+                           new ComputerPlayer("Computer", PlayerLetter.o));
       Game.Play();
 
       Console.ReadKey();

@@ -39,7 +39,7 @@ namespace TicTacToe
         if (CurrentPlayer.DoesPlayerWins(Board))
           Winner = CurrentPlayer;
 
-      } while ((Board.HasAvailableChoices()) && (Winner == null));
+      } while ((Board.HasAvailableTiles()) && (Winner == null));
 
       Console.WriteLine(GetWinnerMessage());
     }

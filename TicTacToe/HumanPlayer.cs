@@ -15,7 +15,7 @@ namespace TicTacToe
     {
       string AvailableTilesString = board.AvailableTilesString();
       Tile = GetATileFromZeroToNine("");
-      while (!board.IsTileEmpty(Tile))
+      while (!board.IsTileAvailable(Tile))
       {
         Tile = GetATileFromZeroToNine(AvailableTilesString);
       } 

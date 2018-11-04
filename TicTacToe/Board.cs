@@ -12,7 +12,7 @@ namespace TicTacToe
 
     private readonly char[] Tiles = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
 
-    public bool IsTileEmpty(byte tile)
+    public bool IsTileAvailable(byte tile)
     {
       return ((tile >= 0 && tile < 9) && (Tiles[tile] == ' '));
     }
@@ -28,7 +28,7 @@ namespace TicTacToe
     {
       return Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => (byte) (item.index + 1)).ToList();
     }
-    public bool HasAvailableChoices()
+    public bool HasAvailableTiles()
     {
       return Tiles.Count((tile) => tile == ' ') > 0;
     }

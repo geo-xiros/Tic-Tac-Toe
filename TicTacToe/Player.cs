@@ -24,8 +24,8 @@ namespace TicTacToe
 
     public Player(String name, PlayerLetter playerLetter)
     {
-      this.Name = name;
-      this.PlayerLetter = (char)playerLetter;
+      Name = name;
+      PlayerLetter = (char)playerLetter;
     }
     public bool DoesPlayerWins(Board board)
     {

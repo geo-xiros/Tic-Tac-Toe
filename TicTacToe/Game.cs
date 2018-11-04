@@ -33,7 +33,7 @@ namespace TicTacToe
         Console.Clear();
         Console.WriteLine($"{CurrentPlayer.Name} selected tile number: {CurrentPlayer.Tile + 1}");
 
-        Board.SetTileValue(CurrentPlayer);//.Tile, CurrentPlayer.PlayerLetter);
+        Board.SetTileValue(CurrentPlayer);
         Board.DisplayTiles();
 
         if (CurrentPlayer.DoesPlayerWins(Board))

@@ -31,7 +31,11 @@ namespace TicTacToe
     }
     public void DisplayAvailableTiles()
     {
-      Console.WriteLine("Available Choices: " + string.Join(", ", Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => item.index+1)));
+      Console.WriteLine("Available Choices: " + string.Join(", ", AvalableTiles()));// Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => item.index+1)));
+    }
+    public IList<byte> AvalableTiles()
+    {
+      return Tiles.Select((tile, index) => new { index, tile }).Where((item) => item.tile == ' ').Select((item) => (byte) (item.index + 1)).ToList();
     }
     public bool HasAvailableChoices()
     {

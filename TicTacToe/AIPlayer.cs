@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace TicTacToe
+{
+  class AIPlayer : Player
+  {
+    Random Random = new Random();
+
+    public AIPlayer(string name, PlayerLetter playerLetter) : base(name, playerLetter)
+    {
+    }
+
+    public override void ChooseATile(Board board)
+    {
+      IList<byte> AvalableTiles = board.AvalableTiles();
+
+      // TODO:
+      // CHECK IF THE OTHER USER IS READY TO WIN AND BLOCK HIM
+      // CHECK IF AI IS READY TO WIN AND SELECT WINNING TILE
+
+      // RANDOM SELECT TILE
+      Tile = ChooseRandomTile(AvalableTiles);
+
+      // set Tile Value
+      board.SetTileValue(Tile, PlayerLetter);
+
+      Console.WriteLine($"{Name} selected tile number: {Tile + 1}");
+    }
+    private byte ChooseRandomTile(IList<byte> AvalableTiles)
+    {
+      int random = Random.Next(AvalableTiles.Count);
+      return (byte)AvalableTiles.ElementAt(random);
+    }
+  }
+}

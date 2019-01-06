@@ -6,18 +6,18 @@ using System.Text;
 
 namespace TicTacToe
 {
-  class Program
-  {
-
-    static void Main(string[] args)
+    class Program
     {
-      Game Game = new Game(new HumanPlayer("George", PlayerLetter.x),
-                           new ComputerPlayer("Computer", PlayerLetter.o));
-      Game.Play();
 
-      Console.ReadKey();
+        static void Main(string[] args)
+        {
+            Game Game = new Game(new HumanPlayer("George", PlayerLetter.x),
+                                 new ComputerPlayer("Computer", PlayerLetter.o));
+            Game.Play();
+
+            Console.ReadKey();
+
+        }
 
     }
-
-  }
 }

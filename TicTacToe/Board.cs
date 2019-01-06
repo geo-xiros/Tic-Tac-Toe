@@ -5,53 +5,55 @@ using System.Text;
 
 namespace TicTacToe
 {
-    enum PlayerLetter { x = 'x', o = 'o', empty = ' ' };
 
     class Board
     {
 
-        private readonly char[] Tiles = { ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ' };
+        private readonly GameLetter[] Tiles = {
+            GameLetter.Empty, GameLetter.Empty, GameLetter.Empty,
+            GameLetter.Empty, GameLetter.Empty, GameLetter.Empty,
+            GameLetter.Empty, GameLetter.Empty, GameLetter.Empty};
 
         public bool IsTileSelectionValid(byte tile)
         {
             return AvailableTiles()
                 .Contains(tile);
         }
-        public void SetTileValue(byte tile, char letter)
+        public void SetTileValue(byte tile, GameLetter letter)
         {
             Tiles[tile] = letter;
         }
-        public char GetTileValue(byte tile)
+        public GameLetter GetTileValue(byte tile)
         {
             return Tiles[tile];
         }
         public string AvailableTilesString()
         {
-            return "(Available Tiles : " + string.Join(", ", AvailableTiles()) + ") ";
+            return $"(Available Tiles : {string.Join(", ", AvailableTiles())}) ";
         }
         public IList<byte> AvailableTiles()
         {
             return Tiles
                 .Select((tile, index) => new { index, tile })
-                .Where((item) => item.tile == ' ')
+                .Where((item) => item.tile == GameLetter.Empty)
                 .Select((item) => (byte)(item.index + 1))
                 .ToList();
         }
         public bool HasAvailableTiles()
         {
             return Tiles
-                .Count((tile) => tile == ' ') > 0;
+                .Count((tile) => tile == GameLetter.Empty) > 0;
         }
 
         public void DisplayTiles()
         {
             byte i = 0;
 
-            Console.WriteLine(" {0} | {1} | {2} ", Tiles[i++], Tiles[i++], Tiles[i++]);
+            Console.WriteLine($" {(char)Tiles[i++]} | {(char)Tiles[i++]} | {(char)Tiles[i++]} ");
             Console.WriteLine("-----------");
-            Console.WriteLine(" {0} | {1} | {2} ", Tiles[i++], Tiles[i++], Tiles[i++]);
+            Console.WriteLine($" {(char)Tiles[i++]} | {(char)Tiles[i++]} | {(char)Tiles[i++]} ");
             Console.WriteLine("-----------");
-            Console.WriteLine(" {0} | {1} | {2} ", Tiles[i++], Tiles[i++], Tiles[i++]);
+            Console.WriteLine($" {(char)Tiles[i++]} | {(char)Tiles[i++]} | {(char)Tiles[i++]} ");
             Console.WriteLine("");
         }
 

@@ -5,11 +5,13 @@ using System.Text;
 
 namespace TicTacToe
 {
+    public enum GameLetter { X = 'X', O = 'O', Empty = ' ' };
+
     abstract class Player
     {
+
         public String Name { get; private set; }
-        private readonly PlayerLetter _playerLetter;
-        public char PlayerLetter => (char)_playerLetter;
+        public GameLetter PlayerLetter { get; private set; }
         private byte _Tile;
         public byte Tile { get { return (byte)(_Tile - 1); } protected set { _Tile = value; } }
         readonly List<byte[]>[] WinCombinations = {
@@ -23,17 +25,17 @@ namespace TicTacToe
             new List<byte[]> { new byte[] { 6, 8 }, new byte[] { 1, 4 } },
             new List<byte[]> { new byte[] { 6, 7 }, new byte[] { 2, 5 }, new byte[] { 0, 4 } }};
 
-        public Player(String name, PlayerLetter playerLetter)
+        public Player(String name, GameLetter playerLetter)
         {
             Name = name;
-            _playerLetter = playerLetter;
+            PlayerLetter = playerLetter;
         }
         public bool DoesPlayerWins(Board board)
         {
             // check all cobinations for winning
             return DoesPlayerWins(board, Tile, PlayerLetter);
         }
-        public bool DoesPlayerWins(Board board, byte tile, char playerLetter)
+        public bool DoesPlayerWins(Board board, byte tile, GameLetter playerLetter)
         {
             // check all cobinations for winning
             foreach (byte[] Combination in WinCombinations[tile])

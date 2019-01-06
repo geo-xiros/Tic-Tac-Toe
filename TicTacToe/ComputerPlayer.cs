@@ -13,7 +13,7 @@ namespace TicTacToe
 
         public override void ChooseATile(Board board)
         {
-            IList<byte> AvalableTiles = board.AvailableTiles();
+            IEnumerable<byte> AvalableTiles = board.AvailableTiles();
 
             // CHECK IF AI IS READY TO WIN AND SELECT WINNING TILE
             if (!FindWinningTile(board, AvalableTiles, PlayerLetter))
@@ -22,13 +22,13 @@ namespace TicTacToe
                     // RANDOM SELECT TILE
                     ChooseRandomTile(AvalableTiles);
         }
-        private void ChooseRandomTile(IList<byte> avalableTiles)
+        private void ChooseRandomTile(IEnumerable<byte> avalableTiles)
         {
-            int RandomTile = Random.Next(avalableTiles.Count);
+            int RandomTile = Random.Next(avalableTiles.Count());
             Tile = avalableTiles.ElementAt(RandomTile);
         }
 
-        private bool FindWinningTile(Board board, IList<byte> avalableTiles, GameLetter playerLetter)
+        private bool FindWinningTile(Board board, IEnumerable<byte> avalableTiles, GameLetter playerLetter)
         {
 
             foreach (byte TileToCheck in avalableTiles)

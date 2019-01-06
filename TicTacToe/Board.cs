@@ -31,13 +31,12 @@ namespace TicTacToe
         {
             return $"(Available Tiles : {string.Join(", ", AvailableTiles())}) ";
         }
-        public IList<byte> AvailableTiles()
+        public IEnumerable<byte> AvailableTiles()
         {
             return Tiles
                 .Select((tile, index) => new { index, tile })
                 .Where((item) => item.tile == GameLetter.Empty)
-                .Select((item) => (byte)(item.index + 1))
-                .ToList();
+                .Select((item) => (byte)(item.index + 1));
         }
         public bool HasAvailableTiles()
         {

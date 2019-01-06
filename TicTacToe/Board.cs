@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TicTacToe
 {
-    enum PlayerLetter { x = 'x', o = 'o' };
+    enum PlayerLetter { x = 'x', o = 'o', empty = ' ' };
 
     class Board
     {

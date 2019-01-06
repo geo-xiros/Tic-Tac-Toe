@@ -27,7 +27,7 @@ namespace TicTacToe
         {
             return Tiles[tile];
         }
-        public string StringOfAvailableTiles => $"(Available Tiles : {string.Join(", ", AvailableTiles)}) ";
+        public string AvailableTilesString => $"(Available Tiles : {string.Join(", ", AvailableTiles)}) ";
 
         public IEnumerable<byte> AvailableTiles => Tiles
             .Select((tile, index) => new { index, tile })

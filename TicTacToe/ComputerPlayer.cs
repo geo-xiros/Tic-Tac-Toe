@@ -13,7 +13,7 @@ namespace TicTacToe
 
         public override void ChooseATile(Board board)
         {
-            IEnumerable<byte> AvalableTiles = board.AvailableTiles();
+            IEnumerable<byte> AvalableTiles = board.AvailableTiles;
 
             // CHECK IF AI IS READY TO WIN AND SELECT WINNING TILE
             if (!FindWinningTile(board, AvalableTiles, PlayerLetter))

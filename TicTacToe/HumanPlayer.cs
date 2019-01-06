@@ -11,7 +11,7 @@ namespace TicTacToe
 
         public override void ChooseATile(Board board)
         {
-            string AvailableTilesString = board.AvailableTilesString();
+            string AvailableTilesString = board.StringOfAvailableTiles;
 
             byte _Tile = ConsoleInputTileNumber(string.Empty);
 

@@ -11,7 +11,7 @@ namespace TicTacToe
         private readonly Player Player2;
         private Player CurrentPlayer;
         private Player Winner;
-        Board Board;
+        private Board Board;
         public Game(Player player1, Player player2)
         {
             Board = new Board();
@@ -37,16 +37,21 @@ namespace TicTacToe
                 Board.DisplayTiles();
 
                 if (CurrentPlayer.DoesPlayerWins(Board))
+                {
                     Winner = CurrentPlayer;
+                }
+                    
 
-            } while ((Board.HasAvailableTiles()) && (Winner == null));
+            } while ((Board.HasAvailableTiles) && (Winner == null));
 
             Console.WriteLine(GetWinnerMessage());
         }
 
         public String GetWinnerMessage()
         {
-            return (Winner == null) ? "It is a tie !!!" : $"Player {Winner.Name} Wins!!!";
+            return (Winner == null) 
+                ? "It is a tie !!!" 
+                : $"Player {Winner.Name} Wins!!!";
         }
 
 

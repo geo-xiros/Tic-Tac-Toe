@@ -17,8 +17,7 @@ namespace TicTacToe
             Board = new Board();
             Player1 = player1;
             Player2 = player2;
-            CurrentPlayer = player2;
-            Winner = null;
+            CurrentPlayer = player1;
         }
         public void Play()
         {
@@ -26,8 +25,6 @@ namespace TicTacToe
 
             do
             {
-
-                CurrentPlayer = (CurrentPlayer == Player1) ? Player2 : Player1;
                 CurrentPlayer.ChooseATile(Board);
 
                 Console.Clear();
@@ -40,7 +37,8 @@ namespace TicTacToe
                 {
                     Winner = CurrentPlayer;
                 }
-                    
+
+                CurrentPlayer = (CurrentPlayer == Player1) ? Player2 : Player1;
 
             } while ((Board.HasAvailableTiles) && (Winner == null));
 

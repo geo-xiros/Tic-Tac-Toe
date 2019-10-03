@@ -9,32 +9,30 @@ namespace TicTacToe
     {
         Random Random = new Random();
 
-        public ComputerPlayer(string name, GameLetter playerLetter) : base(name, playerLetter) { }
+        public ComputerPlayer(Board board, string name, GameLetter playerLetter) : base(board,name, playerLetter) { }
 
-        public override void ChooseATile(Board board)
+        public override void ChooseATile( string promptMessage)
         {
-            IEnumerable<byte> AvalableTiles = board.AvailableTiles;
-
             // CHECK IF AI IS READY TO WIN AND SELECT WINNING TILE
-            if (!FindWinningTile(board, AvalableTiles, PlayerLetter))
+            if (!FindWinningTile(_board, _board.AvailableTiles, PlayerLetter))
                 // CHECK IF THE OTHER USER IS READY TO WIN AND BLOCK HIM
-                if (!FindWinningTile(board, AvalableTiles, PlayerLetter == GameLetter.X ? GameLetter.O : GameLetter.X))
+                if (!FindWinningTile(_board, _board.AvailableTiles, PlayerLetter == GameLetter.X ? GameLetter.O : GameLetter.X))
                     // RANDOM SELECT TILE
-                    ChooseRandomTile(AvalableTiles);
+                    ChooseRandomTile(_board.AvailableTiles);
         }
         private void ChooseRandomTile(IEnumerable<byte> avalableTiles)
         {
             int RandomTile = Random.Next(avalableTiles.Count());
-            Tile = avalableTiles.ElementAt(RandomTile);
+            _tile = avalableTiles.ElementAt(RandomTile);
         }
 
         private bool FindWinningTile(Board board, IEnumerable<byte> avalableTiles, GameLetter playerLetter)
         {
 
             foreach (byte TileToCheck in avalableTiles)
-                if (DoesPlayerWins(board, (byte)(TileToCheck - 1), playerLetter))
+                if (board.DoesPlayerWins((byte)(TileToCheck - 1), playerLetter))
                 {
-                    Tile = TileToCheck;
+                    _tile = TileToCheck;
                     return true;
                 }
 

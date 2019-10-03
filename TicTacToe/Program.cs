@@ -11,9 +11,19 @@ namespace TicTacToe
 
         static void Main(string[] args)
         {
-            Game Game = new Game(new HumanPlayer("George", GameLetter.X),
-                                 new ComputerPlayer("Computer", GameLetter.O));
-            Game.Play();
+            var board = new Board();
+            var playe1 = new HumanPlayer(board,"George", GameLetter.X);
+            var player2 = new ComputerPlayer(board,"Computer", GameLetter.O);
+            var game = new Game(board, playe1, player2);
+
+            while (!game.GameIsOver)
+            {
+                game.RenderGame();
+                game.NextPlayer();
+                game.Play();
+            }
+
+            game.RenderGame();
 
             Console.ReadKey();
 

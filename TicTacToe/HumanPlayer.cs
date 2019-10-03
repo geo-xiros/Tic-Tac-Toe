@@ -7,33 +7,19 @@ namespace TicTacToe
 {
     internal class HumanPlayer : Player
     {
-        public HumanPlayer(string name, GameLetter playerLetter) : base(name, playerLetter) { }
+        public HumanPlayer(Board board, string name, GameLetter playerLetter) : base(board, name, playerLetter) { }
 
-        public override void ChooseATile(Board board)
+        public override void ChooseATile(string promptMessage)
         {
-            string AvailableTilesString = board.AvailableTilesString;
-
-            byte _Tile = ConsoleInputTileNumber(string.Empty);
-
-            while (!board.IsTileSelectionValid(_Tile))
-            {
-                _Tile = ConsoleInputTileNumber(AvailableTilesString);
-            }
-
-            Tile = _Tile;
-        }
-        private byte ConsoleInputTileNumber(string availableTilesString)
-        {
-            byte InputByte;
             string Input;
 
             do
             {
-                Console.Write($"{Name} select a tile number {availableTilesString}: ");
+                Console.Write(promptMessage);
                 Input = Console.ReadLine();
-            } while (!byte.TryParse(Input, out InputByte));
+            } while (!byte.TryParse(Input, out _tile));
 
-            return InputByte;
         }
+
     }
 }

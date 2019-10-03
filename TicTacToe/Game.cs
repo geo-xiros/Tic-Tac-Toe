@@ -5,53 +5,68 @@ using System.Text;
 
 namespace TicTacToe
 {
-    class Game
+    public class Game : IGame
     {
-        private readonly Player Player1;
-        private readonly Player Player2;
-        private Player CurrentPlayer;
-        private Player Winner;
-        private Board Board;
-        public Game(Player player1, Player player2)
+        private readonly Player _player1;
+        private readonly Player _player2;
+        private readonly Board _board;
+        private Player _currentPlayer;
+        private bool _currentPlayerWon;
+
+        public bool GameIsOver { get; private set; }
+
+        public Game(Board board, Player player1, Player player2)
         {
-            Board = new Board();
-            Player1 = player1;
-            Player2 = player2;
-            CurrentPlayer = player1;
+            _board = board;
+            _player1 = player1;
+            _player2 = player2;
         }
+
         public void Play()
         {
-            Board.DisplayTiles();
+            _currentPlayer.ChooseATile( $"{_currentPlayer.Name} select a tile number: ");
 
-            do
+            while (!_board.IsTileSelectionValid(_currentPlayer.Tile))
             {
-                CurrentPlayer.ChooseATile(Board);
+                _currentPlayer.ChooseATile( $"{_currentPlayer.Name} select a tile number {_board.AvailableTilesString}: ");
+            }
 
-                Console.Clear();
-                Console.WriteLine($"{CurrentPlayer.Name} selected tile number: {CurrentPlayer.Tile + 1}");
+            _board.SetTileValue(_currentPlayer.Tile, _currentPlayer.PlayerLetter);
 
-                Board.SetTileValue(CurrentPlayer.Tile, CurrentPlayer.PlayerLetter);
-                Board.DisplayTiles();
 
-                if (CurrentPlayer.DoesPlayerWins(Board))
-                {
-                    Winner = CurrentPlayer;
-                }
+            _currentPlayerWon = _board.DoesPlayerWins(_currentPlayer);
 
-                CurrentPlayer = (CurrentPlayer == Player1) ? Player2 : Player1;
+            GameIsOver = _currentPlayerWon || !_board.HasAvailableTiles;
 
-            } while ((Board.HasAvailableTiles) && (Winner == null));
+        }
 
+        public void RenderGame()
+        {
+            Console.Clear();
+            _currentPlayer?.PrintLastChoice();
+
+            _board.DisplayTiles();
+
+            if (GameIsOver)
+            {
+                PrintWinner();
+            }
+        }
+
+        public void NextPlayer()
+        {
+            _currentPlayer = (_currentPlayer == _player1) ? _player2 : _player1;
+        }
+
+        private void PrintWinner()
+        {
             Console.WriteLine(GetWinnerMessage());
         }
-
-        public String GetWinnerMessage()
+        private String GetWinnerMessage()
         {
-            return (Winner == null) 
-                ? "It is a tie !!!" 
-                : $"Player {Winner.Name} Wins!!!";
+            return _currentPlayerWon
+                ? $"Player {_currentPlayer.Name} Wins!!!"
+                : "It is a tie !!!";
         }
-
-
     }
 }

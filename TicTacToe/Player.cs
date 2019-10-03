@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TicTacToe
 {
@@ -13,7 +10,7 @@ namespace TicTacToe
         public String Name { get; private set; }
         public GameLetter PlayerLetter { get; private set; }
         protected byte _tile;
-        public byte Tile { get { return (byte)(_tile-1); } protected set { _tile = value; } }
+        public byte Tile { get { return (byte)(_tile - 1); } protected set { _tile = value; } }
         protected Board _board;
 
         public Player(Board board, String name, GameLetter playerLetter)
@@ -24,7 +21,7 @@ namespace TicTacToe
         }
 
 
-        public abstract void ChooseATile( string PromptMessage);
+        public abstract void ChooseATile(string PromptMessage);
 
         public void PrintLastChoice()
         {

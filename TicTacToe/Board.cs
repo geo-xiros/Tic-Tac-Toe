@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace TicTacToe
 {
@@ -51,7 +50,7 @@ namespace TicTacToe
                 .Where((item) => item.tile == GameLetter.Empty)
                 .Select((item) => (byte)(item.index + 1));
 
-        public void SetTileValue(byte tile,GameLetter value)
+        public void SetTileValue(byte tile, GameLetter value)
         {
             Tiles[tile] = value;
         }
@@ -62,6 +61,15 @@ namespace TicTacToe
         public bool HasAvailableTiles
             => Tiles
                 .Count((tile) => tile == GameLetter.Empty) > 0;
+
+        public bool IsTileSelectionValid(byte tile)
+        {
+            return AvailableTiles
+                .Contains((byte)(tile + 1));
+        }
+
+        public string AvailableTilesString
+            => $"(Available Tiles : {string.Join(", ", AvailableTiles)}) ";
 
         public void DisplayTiles()
         {
@@ -74,19 +82,6 @@ namespace TicTacToe
             Console.WriteLine($" {(char)Tiles[i++]} | {(char)Tiles[i++]} | {(char)Tiles[i++]} ");
             Console.WriteLine("");
         }
-        #endregion
-
-        #region private help methods
-        public bool IsTileSelectionValid(byte tile)
-        {
-            return AvailableTiles
-                .Contains((byte)(tile + 1));
-        }
-
-        public string AvailableTilesString
-            => $"(Available Tiles : {string.Join(", ", AvailableTiles)}) ";
-
-
         #endregion
 
     }

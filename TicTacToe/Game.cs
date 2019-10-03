@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace TicTacToe
 {
@@ -24,11 +21,11 @@ namespace TicTacToe
 
         public void Play()
         {
-            _currentPlayer.ChooseATile( $"{_currentPlayer.Name} select a tile number: ");
+            _currentPlayer.ChooseATile($"{_currentPlayer.Name} select a tile number: ");
 
             while (!_board.IsTileSelectionValid(_currentPlayer.Tile))
             {
-                _currentPlayer.ChooseATile( $"{_currentPlayer.Name} select a tile number {_board.AvailableTilesString}: ");
+                _currentPlayer.ChooseATile($"{_currentPlayer.Name} select a tile number {_board.AvailableTilesString}: ");
             }
 
             _board.SetTileValue(_currentPlayer.Tile, _currentPlayer.PlayerLetter);

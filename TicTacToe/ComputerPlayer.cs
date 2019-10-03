@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace TicTacToe
 {
@@ -9,9 +8,9 @@ namespace TicTacToe
     {
         Random Random = new Random();
 
-        public ComputerPlayer(Board board, string name, GameLetter playerLetter) : base(board,name, playerLetter) { }
+        public ComputerPlayer(Board board, string name, GameLetter playerLetter) : base(board, name, playerLetter) { }
 
-        public override void ChooseATile( string promptMessage)
+        public override void ChooseATile(string promptMessage)
         {
             // CHECK IF AI IS READY TO WIN AND SELECT WINNING TILE
             if (!FindWinningTile(_board, _board.AvailableTiles, PlayerLetter))
